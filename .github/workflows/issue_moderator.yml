@@ -30,7 +30,7 @@ jobs:
           permission-pull-requests: write
 
       - name: Moderate issues
-        uses: hazptr/issue-moderator-action@7322f1d8b5ba2967f44861051d9bfea0e36754e5 # source-lifecycle-dist
+        uses: hazptr/issue-moderator-action@1b5701c8edcb160e161d4e6637343104c7feb5a6 # source-lifecycle-dist
         with:
           repo-token: ${{ steps.app-token.outputs.token }}
           duplicate-label: Duplicate
@@ -62,4 +62,6 @@ jobs:
           removal-days: '0'
           # Source requests whose site stays down are closed after the same wait, without a PR.
           source-request-label: Source request
+          # New requests whose domain is gone (DNS/RDAP only) are marked down, so they close after the wait.
+          request-dns-check-enabled: true
           pr-token: ${{ steps.app-token.outputs.token }}
