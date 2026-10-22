@@ -30,7 +30,7 @@ jobs:
           permission-pull-requests: write
 
       - name: Moderate issues
-        uses: hazptr/issue-moderator-action@88744c91ed239403dd1e71ade3c453b914c49017 # source-lifecycle-dist
+        uses: hazptr/issue-moderator-action@4236e75b3a629254bf3e8d6d807dcd2b99216c69 # source-lifecycle-dist
         with:
           repo-token: ${{ github.token }}
           duplicate-label: Duplicate
@@ -60,6 +60,6 @@ jobs:
           removal-enabled: true
           # keiyoushi: 14. Zero here so the demo does not have to wait.
           removal-days: '0'
-          removal-exclude-labels: |
-            ["Source request"]
+          # Source requests whose site stays down are closed after the same wait, without a PR.
+          source-request-label: Source request
           pr-token: ${{ steps.removal-token.outputs.token }}
