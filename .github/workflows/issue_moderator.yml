@@ -12,14 +12,23 @@ on:
 
 permissions:
   issues: write
-  contents: write
-  pull-requests: write
 
 jobs:
   autoclose:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      # Removal PRs come from the GitHub App, so they show as its bot and start other workflows.
+      - name: Removal PR token
+        id: removal-token
+        if: github.event_name != 'issues'
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.SOURCE_REMOVAL_APP_ID }}
+          private-key: ${{ secrets.SOURCE_REMOVAL_APP_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Moderate issues
         uses: hazptr/issue-moderator-action@88744c91ed239403dd1e71ade3c453b914c49017 # source-lifecycle-dist
         with:
@@ -53,5 +62,4 @@ jobs:
           removal-days: '0'
           removal-exclude-labels: |
             ["Source request"]
-          # keiyoushi: a token from its GitHub App (actions/create-github-app-token).
-          pr-token: ${{ github.token }}
+          pr-token: ${{ steps.removal-token.outputs.token }}
