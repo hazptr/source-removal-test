@@ -10,29 +10,29 @@ on:
   #   - cron: '17 6 * * *'
   workflow_dispatch:
 
-permissions:
-  issues: write
+# Everything is done with the GitHub App's token; the workflow token needs nothing.
+permissions: {}
 
 jobs:
   autoclose:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      # Removal PRs come from the GitHub App, so they show as its bot and start other workflows.
-      - name: Removal PR token
-        id: removal-token
-        if: github.event_name != 'issues'
+      # All comments, labels, closes and removal PRs come from the GitHub App, under one name.
+      - name: App token
+        id: app-token
         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           app-id: ${{ vars.SOURCE_REMOVAL_APP_ID }}
           private-key: ${{ secrets.SOURCE_REMOVAL_APP_KEY }}
           permission-contents: write
+          permission-issues: write
           permission-pull-requests: write
 
       - name: Moderate issues
-        uses: hazptr/issue-moderator-action@4236e75b3a629254bf3e8d6d807dcd2b99216c69 # source-lifecycle-dist
+        uses: hazptr/issue-moderator-action@7322f1d8b5ba2967f44861051d9bfea0e36754e5 # source-lifecycle-dist
         with:
-          repo-token: ${{ github.token }}
+          repo-token: ${{ steps.app-token.outputs.token }}
           duplicate-label: Duplicate
 
           duplicate-check-enabled: true
@@ -62,4 +62,4 @@ jobs:
           removal-days: '0'
           # Source requests whose site stays down are closed after the same wait, without a PR.
           source-request-label: Source request
-          pr-token: ${{ steps.removal-token.outputs.token }}
+          pr-token: ${{ steps.app-token.outputs.token }}

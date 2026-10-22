@@ -18,5 +18,5 @@ with the new inputs. Every issue and pull request here is a test.
 | Old Scans | (deleted) | `Previously deleted` |
 
 Removal runs on `workflow_dispatch` here, with `removal-days: 0`; keiyoushi would run it daily with 14.
-Removal PRs are opened by the `hazptr-source-removal-test` GitHub App, as keiyoushi would with its own app.
+Everything the moderator does (comments, labels, closes, removal PRs) is done by the `hazptr-source-removal-test` GitHub App, as keiyoushi would with its own app.
 The `/remove` command checks organization membership, which a user-owned repository cannot pass.
