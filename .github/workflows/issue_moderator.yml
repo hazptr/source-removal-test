@@ -30,7 +30,7 @@ jobs:
           permission-pull-requests: write
 
       - name: Moderate issues
-        uses: hazptr/issue-moderator-action@1b5701c8edcb160e161d4e6637343104c7feb5a6 # source-lifecycle-dist
+        uses: hazptr/issue-moderator-action@a5e8aa7a72055865e91c275f05ddacc16d4432ab # source-lifecycle-dist
         with:
           repo-token: ${{ steps.app-token.outputs.token }}
           duplicate-label: Duplicate
@@ -64,4 +64,6 @@ jobs:
           source-request-label: Source request
           # New requests whose domain is gone (DNS/RDAP only) are marked down, so they close after the wait.
           request-dns-check-enabled: true
+          # keiyoushi: 7 (each open request rechecked weekly). One here so every run checks all.
+          request-recheck-days: '1'
           pr-token: ${{ steps.app-token.outputs.token }}
