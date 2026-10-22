@@ -1,0 +1,28 @@
+# Test helper: opens an issue as github-actions[bot], so a maintainer's comment on it is not the reporter's.
+name: Make test issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        required: true
+      body:
+        required: true
+      labels:
+        required: true
+
+permissions:
+  issues: write
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: ${{ inputs.title }}
+          BODY: ${{ inputs.body }}
+          LABELS: ${{ inputs.labels }}
+        run: gh issue create --title "$TITLE" --body "$BODY" --label "$LABELS"

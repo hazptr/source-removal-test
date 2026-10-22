@@ -1,0 +1,115 @@
+{
+  "name": "Source removal test",
+  "extensionList": {
+    "extensions": [
+      {
+        "name": "Tachiyomi: Broken Search Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.brokensearch",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Broken Search Scans",
+            "language": "en",
+            "homeUrl": "https://example.net"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Changed Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.changedscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Changed Scans",
+            "language": "en",
+            "homeUrl": "https://changedscans.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Dead Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.deadscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Dead Scans",
+            "language": "en",
+            "homeUrl": "https://deadscans.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Disputed Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.disputedscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Disputed Scans",
+            "language": "en",
+            "homeUrl": "https://disputedscans.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Not Real Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.notrealscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Not Real Scans",
+            "language": "en",
+            "homeUrl": "https://example.com"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Other Dead Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.otherdeadscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Other Dead Scans",
+            "language": "en",
+            "homeUrl": "https://otherdeadscans.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Twin Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.twinscans",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Twin Scans",
+            "language": "en",
+            "homeUrl": "https://twinscans.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Twin Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.en.twinscansnet",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Twin Scans",
+            "language": "en",
+            "homeUrl": "https://twinscans-net.invalid"
+          }
+        ]
+      },
+      {
+        "name": "Tachiyomi: Not Real Scans",
+        "packageName": "eu.kanade.tachiyomi.extension.fr.notrealscansfr",
+        "versionName": "1.6.0",
+        "sources": [
+          {
+            "name": "Not Real Scans",
+            "language": "fr",
+            "homeUrl": "https://fr.example.com"
+          }
+        ]
+      }
+    ]
+  }
+}

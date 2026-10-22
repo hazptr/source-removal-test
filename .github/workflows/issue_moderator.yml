@@ -1,0 +1,57 @@
+name: Issue moderator
+
+on:
+  issues:
+    types: [ opened, edited, reopened ]
+  issue_comment:
+    types: [ created ]
+  # keiyoushi would also run this daily:
+  # schedule:
+  #   - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  autoclose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Moderate issues
+        uses: hazptr/issue-moderator-action@88744c91ed239403dd1e71ade3c453b914c49017 # source-lifecycle-dist
+        with:
+          repo-token: ${{ github.token }}
+          duplicate-label: Duplicate
+
+          duplicate-check-enabled: true
+          duplicate-check-labels: |
+            ["Source request", "Domain changed"]
+
+          existing-check-enabled: true
+          existing-check-labels: |
+            ["Source request", "Domain changed"]
+          existing-check-repo-url: https://raw.githubusercontent.com/hazptr/source-removal-test/main/index.json
+
+          url-search-sections: |
+            ["Source link", "Source new URL"]
+
+          auto-close-ignore-label: do-not-autoclose
+
+          source-check-enabled: true
+          source-check-labels: |
+            ["Source is down", "Bug"]
+          source-check-exclude-labels: |
+            ["Source request"]
+          previously-deleted-label: Previously deleted
+          site-issues-label: Site Issues
+
+          removal-enabled: true
+          # keiyoushi: 14. Zero here so the demo does not have to wait.
+          removal-days: '0'
+          removal-exclude-labels: |
+            ["Source request"]
+          # keiyoushi: a token from its GitHub App (actions/create-github-app-token).
+          pr-token: ${{ github.token }}
