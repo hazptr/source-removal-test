@@ -30,7 +30,7 @@ jobs:
           permission-pull-requests: write
 
       - name: Moderate issues
-        uses: hazptr/issue-moderator-action@743539f731ae25423952a383bee81760476b7f05 # source-lifecycle-dist
+        uses: hazptr/issue-moderator-action@8c5a069bc84e341e7e757b0f71baed7173bfa2fb # source-lifecycle-dist
         with:
           repo-token: ${{ steps.app-token.outputs.token }}
           duplicate-label: Duplicate
